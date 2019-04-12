@@ -11,11 +11,11 @@ public class Entrypoint {
     private void entryPoint() throws IOException {
         ParseFile parseFile=new ParseFile();
         List<Student> students = parseFile.readStudentsFromCSV();
-        students.forEach(System.out::println);
+//        students.forEach(System.out::println);
 
         FilterData filterData=new FilterData();
         List<Student> student=filterData.filterdetails(students);
-        student.forEach(System.out::println);
+//        student.forEach(System.out::println);
 
         GenerateOutput generateOutput=new GenerateOutput();
         generateOutput.generateFile(student);
