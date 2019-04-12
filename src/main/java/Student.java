@@ -5,9 +5,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class Student {
     private String name;
-    private String batch;
+    private Integer batch;
     private String dorm;
     private String room;
-    private String gpa;
+    private Double gpa;
 
 }

@@ -7,10 +7,10 @@ import java.util.List;
 public class ParseFile {
     private Student createStudent(String[] data) {
         String name = data[0];
-        String batch = data[1];
+        Integer batch = Integer.parseInt(data[1]);
         String dorm = data[2];
         String room = data[3];
-        String gpa = data[4];
+        Double gpa = Double.parseDouble(data[4]);
         return new Student(name, batch, dorm, room, gpa);
     }
 
@@ -18,6 +18,7 @@ public class ParseFile {
         InputStream in = this.getClass().getClassLoader().getResourceAsStream("inputFile.csv");
         List<Student> students = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
+            br.readLine();
             String line = br.readLine();
             while (line != null) {
                     String[] items = line.split(",");
