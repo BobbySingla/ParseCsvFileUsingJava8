@@ -4,12 +4,11 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GenerateOutput {
     private final Path outputFilepath = Paths.get("src/main/resources/", "OutputFile.csv");
+
     public void generateFile(List<Student> student) throws IOException {
         OutputStream os = new FileOutputStream(outputFilepath.toFile());
         PrintWriter fileWriter = new PrintWriter(os);
@@ -22,8 +21,8 @@ public class GenerateOutput {
         fileWriter.write("name,batch,dorm,room,gpa\n");
         for (Student rowData : student) {
 
-            fileWriter.write(rowData.getName()+"," +rowData.getBatch()+","+rowData.getDorm()+","+rowData.getRoom()
-            +","+rowData.getGpa()+"\n");
+            fileWriter.write(rowData.getName() + "," + rowData.getBatch() + "," + rowData.getDorm() + "," + rowData.getRoom()
+                    + "," + rowData.getGpa() + "\n");
 //            fileWriter.append(String.join(",",rowData));
 //            fileWriter.append("\n");
         }

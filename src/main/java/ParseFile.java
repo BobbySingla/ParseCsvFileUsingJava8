@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
 public class ParseFile {
     private Student createStudent(String[] data) {
         String name = data[0];
@@ -21,11 +22,11 @@ public class ParseFile {
             br.readLine();
             String line = br.readLine();
             while (line != null) {
-                    String[] items = line.split(",");
-                    Student student = createStudent(items);
-                    students.add(student);
-                    line = br.readLine();
-                }
+                String[] items = line.split(",");
+                Student student = createStudent(items);
+                students.add(student);
+                line = br.readLine();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

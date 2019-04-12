@@ -1,23 +1,22 @@
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.attribute.FileTime;
 import java.util.List;
 
 public class Entrypoint {
     public static void main(String[] args) throws IOException {
-        Entrypoint parseCsvFile=new Entrypoint();
+        Entrypoint parseCsvFile = new Entrypoint();
         parseCsvFile.entryPoint();
     }
+
     private void entryPoint() throws IOException {
-        ParseFile parseFile=new ParseFile();
+        ParseFile parseFile = new ParseFile();
         List<Student> students = parseFile.readStudentsFromCSV();
-//        students.forEach(System.out::println);
+        students.forEach(System.out::println);
 
-        FilterData filterData=new FilterData();
-        List<Student> student=filterData.filterdetails(students);
-//        student.forEach(System.out::println);
+        FilterData filterData = new FilterData();
+        List<Student> student = filterData.filterdetails(students);
+        student.forEach(System.out::println);
 
-        GenerateOutput generateOutput=new GenerateOutput();
+        GenerateOutput generateOutput = new GenerateOutput();
         generateOutput.generateFile(student);
     }
 
