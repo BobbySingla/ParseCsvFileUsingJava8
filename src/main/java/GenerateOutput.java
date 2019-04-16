@@ -12,20 +12,23 @@ public class GenerateOutput {
     public void generateFile(List<Student> student) throws IOException {
         OutputStream os = new FileOutputStream(outputFilepath.toFile());
         PrintWriter fileWriter = new PrintWriter(os);
-//        Iterator iterator = student.iterator();
-//        while (iterator.hasNext()) {
-//            fileWriter.append((Character) iterator.next());
-//        }
-//        List<String> s = student.stream().map(Object::toString).collect(Collectors.toList());
-//        System.out.println(s);
-        fileWriter.write("name,batch,dorm,room,gpa\n");
-        for (Student rowData : student) {
+        fileWriter.append("name,batch,dorm,room,gpa\n");
 
-            fileWriter.write(rowData.getName() + "," + rowData.getBatch() + "," + rowData.getDorm() + "," + rowData.getRoom()
-                    + "," + rowData.getGpa() + "\n");
-//            fileWriter.append(String.join(",",rowData));
-//            fileWriter.append("\n");
-        }
+        student.forEach(rowData -> {
+
+            fileWriter.append(rowData.getName())
+                    .append(",")
+                    .append(String.valueOf(rowData.getBatch()))
+                    .append(",")
+                    .append(rowData.getDorm())
+                    .append(",")
+                    .append(rowData.getRoom())
+                    .append(",")
+                    .append(String.valueOf(rowData.getGpa()))
+                    .append("\n");
+
+        });
+        System.out.println("Successful executed");
         fileWriter.flush();
         fileWriter.close();
     }

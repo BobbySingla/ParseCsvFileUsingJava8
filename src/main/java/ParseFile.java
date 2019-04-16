@@ -4,32 +4,32 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ParseFile {
-    private Student createStudent(String[] data) {
-        String name = data[0];
-        Integer batch = Integer.parseInt(data[1]);
-        String dorm = data[2];
-        String room = data[3];
-        Double gpa = Double.parseDouble(data[4]);
-        return new Student(name, batch, dorm, room, gpa);
-    }
-
     public List<Student> readStudentsFromCSV() {
         InputStream in = this.getClass().getClassLoader().getResourceAsStream("inputFile.csv");
         List<Student> students = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
-            br.readLine();
-            String line = br.readLine();
-            while (line != null) {
-                String[] items = line.split(",");
-                Student student = createStudent(items);
-                students.add(student);
-                line = br.readLine();
+            try (Stream<String> stream = br.lines()) {
+                stream
+                        .skip(1)
+                        .forEach(s -> {
+
+                            String[] split = s.split(",");
+                            String name = split[0];
+                            Integer batch = Integer.parseInt(split[1]);
+                            String dorm = split[2];
+                            String room = split[3];
+                            Double gpa = Double.parseDouble(split[4]);
+                            students.add(new Student(name, batch, dorm, room, gpa));
+                        });
             }
+            return students;
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return students;
+        return null;
     }
 }
