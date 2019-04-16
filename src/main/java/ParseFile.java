@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class ParseFile {
+    public List<Student> generate() {
+         return new Student.StudentBuilder().name(null).batch(null).dorm().room().gpa().build();
+
+    }
+
     public List<Student> readStudentsFromCSV() {
         InputStream in = this.getClass().getClassLoader().getResourceAsStream("inputFile.csv");
         List<Student> students = new ArrayList<>();
@@ -15,7 +20,6 @@ public class ParseFile {
                 stream
                         .skip(1)
                         .forEach(s -> {
-
                             String[] split = s.split(",");
                             String name = split[0];
                             Integer batch = Integer.parseInt(split[1]);
@@ -26,7 +30,6 @@ public class ParseFile {
                         });
             }
             return students;
-
         } catch (IOException e) {
             e.printStackTrace();
         }
